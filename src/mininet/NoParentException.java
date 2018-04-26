@@ -13,6 +13,6 @@ public class NoParentException extends Exception
 {
     public NoParentException()
     {
-        super("A dependent cannot have no parents or only one parent");
+        super("A dependent cannot have no parents or only one parent !");
     }
 }

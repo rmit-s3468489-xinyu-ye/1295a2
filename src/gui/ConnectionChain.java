@@ -18,9 +18,10 @@ import mininet.RelationPath;
 
 /**
  *
- * @author xinyuye
+ * @author Xinyu YE s3468489
  */
-public class ConnectionChain extends javax.swing.JFrame {
+public class ConnectionChain extends javax.swing.JFrame 
+{
 
     /** Creates new form ConnectionChain */
     public ConnectionChain() 

@@ -252,11 +252,10 @@ public class DefineRelation extends javax.swing.JFrame
         {
             message = deAssociate(r);
         }
-        
-        
+    
         refTable();
-        
-        JOptionPane.showMessageDialog(null , message ,"Message" , JOptionPane.ERROR_MESSAGE);
+       
+        JOptionPane.showMessageDialog(null , message ,"Message", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_jBDisassoActionPerformed
     
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -268,7 +267,7 @@ public class DefineRelation extends javax.swing.JFrame
         
     }//GEN-LAST:event_jCBName1ActionPerformed
     
-    private String disassociateParent(Relation relation)
+    public static String disassociateParent(Relation relation)
     {
         String message = "";
         
@@ -307,7 +306,7 @@ public class DefineRelation extends javax.swing.JFrame
         return message;
     }
     
-    private String deCouple(Relation relation) throws NoParentException
+    public static String deCouple(Relation relation) throws NoParentException
     {
         String message = "";
         
@@ -333,6 +332,7 @@ public class DefineRelation extends javax.swing.JFrame
                 if(relation.getName1().equals(r.getName1()) || relation.getName1().equals(r.getName2()))
                 {
                     relations.remove(r);
+                    i--;
                     message = "Successfully decoupled them !";
                     break;
                 }
@@ -343,7 +343,7 @@ public class DefineRelation extends javax.swing.JFrame
         return message;
     }
     
-    private String deAssociate(Relation relation)
+    public static String deAssociate(Relation relation)
     {
         String message = "";
         
@@ -359,6 +359,7 @@ public class DefineRelation extends javax.swing.JFrame
                         (relation.getName2().equals(r.getName1()) || relation.getName2().equals(r.getName2())))
                 {
                     relations.remove(r);
+                    i--;
                     message = "Successfully deassociated them !";
                     break;
                 }

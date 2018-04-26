@@ -277,6 +277,8 @@ public class AddPerson extends javax.swing.JFrame
                             jCBGender.getSelectedItem().toString().charAt(0), Integer.parseInt(jTFAge.getText()),
                             jCBState.getSelectedItem().toString(),jCBFN.getSelectedItem().toString(),
                             jCBMN.getSelectedItem().toString());
+                    
+
                 } 
                 catch (NoParentException npe) 
                 {

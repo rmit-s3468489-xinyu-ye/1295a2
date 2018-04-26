@@ -1,0 +1,30 @@
+private void deleteRelations(String name) throws NoParentException
+{ 
+        List <Relation> relations = MiniNet.driver.getRelations();
+        
+        //delete the corresponding person's relations in the MiniNet       
+        
+        for(int i = 0;i < relations.size();i++)
+    	{
+                Relation r = relations.get(i);
+                
+                    if(MiniNet.driver.getPersonByName(name) instanceof Adult)
+                    {
+                        if(r.getRelationType().equals("Parent") &&
+                                ((r.getName1().equals(name))|| (r.getName2().equals(name))))
+                        {
+                            throw new NoParentException();
+                        }
+                        
+                    }
+                    
+                    if((r.getName1().equals(name))|| (r.getName2().equals(name)))
+                    {
+                            relations.remove(r);
+                            //restroing the arraylist's size by subtracting 1
+                           //from each index after removing the particular object
+                           //for looping over all the elements in the arraylist
+                            i--;
+                    }
+    	} 
+}

@@ -467,49 +467,35 @@ public class Driver
         boolean isMotherExisted;
         String message = "";
         
-        Adult[] parents = new Adult[2];
-        
         isFatherExisted = isPersonExisted(fatherName);
         isMotherExisted = isPersonExisted(motherName);
         
         if (isFatherExisted && isMotherExisted)
         {
-            
-            //Find out the parents of this dependent
             Person p1 = getPersonByName(fatherName);
             Person p2 = getPersonByName(motherName);
-            
-            
-            /**
-             * Detect whether the expected "parents" inputs are actually of the Dependent type
-             */
-            if (p1 instanceof Dependent || p2 instanceof Dependent)
-            {
-                message =  "Dependents cannot be their peers' parents ";
-            }
-            
-            
+                  
             if(findSpouse(p1.getName()).equals(p2.getName()))
             {
-                parents[0] = (Adult)p1;
-                parents[1] = (Adult)p2;
                 Dependent kid = new Dependent(name, photoPath, status, gender, age, state);
                 
                 theMiniNet.add(kid);
+                
                 Collections.sort(theMiniNet,Person.nameComparator);
+     
+                setParents(p1.getName(), name);
+                
                 message = "This dependent is successfully"
                         + " added into MiniNet.";
             }
             else
             {
                 throw new NoParentException();
-            }
-            
+            }        
         }
         else
         {
-            message = "Failed to add this dependent, "
-                    + "the requirement has not been met";
+            throw new NoParentException();
         }
         return message;
     }

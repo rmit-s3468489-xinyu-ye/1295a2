@@ -1,10 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package gui;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,18 +19,18 @@ import mininet.NoParentException;
  *
  * @author Yifan ZHANG s3615625
  */
-public class ListEveryone extends javax.swing.JFrame 
+public class ListEveryone extends javax.swing.JFrame
 {
-
+    
     
     
     /**
      * Creates new form ListEveryone
      */
-    public ListEveryone() 
+    public ListEveryone()
     {
-        initComponents(); 
-        refTable();  
+        initComponents();
+        refTable();
         setFrame();
     }
     
@@ -39,7 +40,7 @@ public class ListEveryone extends javax.swing.JFrame
         setLocation(500, 300);
         setSize(470, 350);
     }
-
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,29 +121,29 @@ public class ListEveryone extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jBProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBProfileActionPerformed
         String message = "";
         
         if(table.getSelectedRow()<0)
         {
             message = "Please select a person to view his/her profile !";
-            JOptionPane.showMessageDialog(null, message ,"Message", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(null, message ,"Message", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
-        try 
+        try
         {
             String name = table.getValueAt(table.getSelectedRow(),0).toString();
             Profile p = new Profile(name);
             p.setVisible(true);
-        } 
-        catch (Exception ex) 
+        }
+        catch (Exception ex)
         {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jBProfileActionPerformed
-
+    
     private void jBDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteActionPerformed
         
         String message = "";
@@ -150,90 +151,97 @@ public class ListEveryone extends javax.swing.JFrame
         if(table.getSelectedRow()<0)
         {
             message = "Please select a person to delete !";
-            JOptionPane.showMessageDialog(null, message ,"Message", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(null, message ,"Message", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
-        try 
+        try
         {
             String name = (table.getValueAt(table.getSelectedRow(), 0).toString());
             
             //delete the corresponding relations of a particular person
             deleteRelations(name);
             
-            List<Person> data = MiniNet.driver.getTheMiniNet();           
+            List<Person> data = MiniNet.driver.getTheMiniNet();
             for(int i = 0;i < data.size();i++)
             {
                 Person p = data.get(i);
                 //delete the corresponding person in the MiniNet
                 if(name.equals(p.getName()))
-                    data.remove(p);   
-            } 
-        } 
-        //in case the user did not select any row
-        //catch the IndexOutOfBoundary Exception
-        catch (Exception ex) 
+                    data.remove(p);
+            }
+        }
+        catch (Exception ex)
         {
             JOptionPane.showMessageDialog(null, ex);
         }
-  
-       
-    
+        
         //Refreshing the table that listing every existing member in MiniNet
         //after deleting a selected person
         
         refTable();
     }//GEN-LAST:event_jBDeleteActionPerformed
-
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.refTable();
     }//GEN-LAST:event_formWindowOpened
-
+    
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         this.refTable();
     }//GEN-LAST:event_formWindowActivated
-
+    
     private void deleteRelations(String name) throws NoParentException
-    { 
+    {
         List <Relation> relations = MiniNet.driver.getRelations();
+        List <String> relationType = new ArrayList<String>();
+
+        //delete the corresponding person's relations in the MiniNet
         
-        //delete the corresponding person's relations in the MiniNet       
-        
+        getRelationType(name);
         
         for(int i = 0;i < relations.size();i++)
-	{
+        {
             Relation r = relations.get(i);
             
-                if(MiniNet.driver.getPersonByName(name) instanceof Adult)
-                {
-                    if(r.getRelationType().equals("Parent") &&
-                            ((r.getName1().equals(name))|| (r.getName2().equals(name))))
-                    {
-                        throw new NoParentException();
-                    }
-                    
-                }
-                
-                if((r.getName1().equals(name))|| (r.getName2().equals(name)))
-                {
-                        relations.remove(r);
-                        //restroing the arraylist's size by subtracting 1
-                       //from each index after removing the particular object
-                       //for looping over all the elements in the arraylist
-                        i--;
-                }
-	} 
+            relationType.add(getRelationType(name));
+            
+            if(relationType.contains("Parent") && 
+               MiniNet.driver.getPersonByName(name) instanceof Adult)
+            {
+                throw new NoParentException();     
+            }
+            else
+            {
+                relations.remove(r);
+                //restroing the arraylist's size by subtracting 1
+                //from each index after removing the particular object
+                //for looping over all the elements in the arraylist
+                i--;
+            }
+        }
     }
-       
+    
+    public String getRelationType(String name)
+    {
+        for(Relation r:MiniNet.driver.getRelations())
+        {
+            if(name.equals(r.getName1()) || name.equals(r.getName2()))
+            {
+                return r.getRelationType();
+            }
+        }
+        return "";
+    }
+    
     private void refTable()
-    {	
+    {
         DefaultTableModel dtm = new DefaultTableModel();
-
+        
         String[] tableHeads = new String[]{"Name", "PhotoPath", "Status", "Gender", "Age", "State"};
         
         dtm.setColumnIdentifiers(tableHeads);
         
-        List<Person> data = MiniNet.driver.getTheMiniNet();	
+        List<Person> data = MiniNet.driver.getTheMiniNet();
         
         for(int i = 0; i < data.size();i++)
         {
@@ -242,13 +250,13 @@ public class ListEveryone extends javax.swing.JFrame
                 Object[] dataRow =
                 {p.getName(),p.getPhotoPath(),
                     p.getStatus(), p.getGender(), p.getAge(), p.getState()};
-
+                
                 dtm.addRow(dataRow);
             }
-        }    
+        }
         table.setModel(dtm);
     }
-   
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBDelete;
     private javax.swing.JButton jBProfile;

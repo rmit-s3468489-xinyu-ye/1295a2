@@ -32,7 +32,7 @@ public class QueryRelationship extends javax.swing.JFrame {
     {
         setResizable(false);
         setLocation(500, 300);
-        setSize(420, 390);
+        setSize(450, 420);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,6 +64,12 @@ public class QueryRelationship extends javax.swing.JFrame {
         jLabel1.setText("Please select a person： ");
 
         jLabel2.setText("Please select another person： ");
+
+        jCBName1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBName1ActionPerformed(evt);
+            }
+        });
 
         jBQuery.setText("Query");
         jBQuery.addActionListener(new java.awt.event.ActionListener() {
@@ -102,23 +108,24 @@ public class QueryRelationship extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jCBName1, 0, 126, Short.MAX_VALUE)
                             .addComponent(jCBName2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCBName1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jCBName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                        .addComponent(jCBName1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCBName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBQuery))
         );
@@ -137,6 +144,10 @@ public class QueryRelationship extends javax.swing.JFrame {
     private void jBQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBQueryActionPerformed
       refTable(query(jCBName1.getSelectedItem().toString(), jCBName2.getSelectedItem().toString()));      
     }//GEN-LAST:event_jBQueryActionPerformed
+
+    private void jCBName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBName1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBName1ActionPerformed
     
     private void refCombos()
     {
@@ -153,8 +164,7 @@ public class QueryRelationship extends javax.swing.JFrame {
     }
     
     private List<Relation> query(String name1, String name2)
-    {
-        
+    {     
         List <Relation> relations = MiniNet.driver.getRelations();
         List <Relation> result = new ArrayList<Relation>();
         

@@ -1,8 +1,11 @@
+Adam,,,M,35,VIC
 Alex Smith,images/3170_1.png,student at RMIT,M,21,WA
+Alice,,,F,30,VIC
 Asakusa Tokyo,images/115705.jpg,,M,21,VIC
 Asano,images/IMG_2070.JPG,feeling dizzy,M,27,VIC
 Ascent Sport,images/IMG_0051.JPG,Just had been refuelled,M,27,VIC
 Ben Turner,images/IMG_2035.jpg,manager at Coles,M,35,VIC
+Bob,,,M,29,VIC
 Camry Toyota,images/41446.png,just had an inspection on the chassis,F,28,VIC
 Chauffeur Bear,images/IMG_0068.jpg,starting the engine,M,27,VIC
 Evangelos Papadopoulos,images/153846.jpg,Selling ice cream on the beach,M,32,VIC
@@ -11,5 +14,9 @@ Hannah White,images/IMG_3181.jpg,student at PLC,F,14,VIC
 Ivan Zhang,images/IMG_3917.PNG,photographing,M,26,VIC
 K Turner,images/IMG_0593.jpg,,M,4,VIC
 Kevin YE,images/IMG_3997.JPG,coding,M,27,VIC
+Luke,,,M,4,VIC
+Mark Turner,images/IMG_0052.JPG,,M,4,VIC
 RMIT University,images/IMG_0229.JPG,I'm full right now,F,26,VIC
 Ray Rui,images/IMG_0436.JPG,sales rep in Toyota dealership,M,40,VIC
+Sakura Gaimu,images/180422.png,,F,27,NSW
+Zoe Foster,images/IMG_3717.JPG,Founder of ZFX,F,28,VIC

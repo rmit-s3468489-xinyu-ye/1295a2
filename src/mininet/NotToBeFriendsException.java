@@ -13,6 +13,6 @@ public class NotToBeFriendsException extends Exception
 {
     public NotToBeFriendsException()
     {
-        super("Cannot make them friends");
+        super("Cannot make them friends !");
     }
 }
