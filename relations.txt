@@ -1,9 +1,18 @@
+Alex Smith,Bob,Friend
+Alex Smith,Kevin YE,Colleague
 Alice,Bob,Couple
 Alice,Luke,Parent
+Asakusa Tokyo,Ben Turner,Friend
 Asano,Ascent Sport,Classmate
 Asano,Ascent Sport,Colleague
 Ben Turner,Hannah White,Parent
 Ben Turner,Zoe Foster,Classmate
 Ben Turner,Zoe Foster,Couple
 Bob,Luke,Parent
+Evangelos Papadopoulos,Kevin YE,Classmate
+Evangelos Papadopoulos,Kevin YE,Colleague
+Evangelos Papadopoulos,Orkhan Azizlee,Classmate
 Hannah White,Zoe Foster,Parent
+Ivan Zhang,Kevin YE,Classmate
+Ivan Zhang,Kevin YE,Colleague
+Kevin YE,Orkhan Azizlee,Classmate

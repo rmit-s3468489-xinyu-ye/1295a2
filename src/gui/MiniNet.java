@@ -5,6 +5,10 @@
  */
 package gui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import mininet.Driver;
 import mininet.FileOperation;
@@ -13,24 +17,41 @@ import mininet.FileOperation;
  *
  * @author Xinyu YE s3468489
  */
-public class MiniNet extends javax.swing.JFrame {
+public class MiniNet extends javax.swing.JFrame 
+{
 
     /**
      * Creates new form MiniNet
      */
-    ListEveryone le = new ListEveryone();
-    AddPerson addPerson = new AddPerson();
-    ConnectionChain cc = new ConnectionChain();
-    DefineRelation define = new DefineRelation();
-    QueryRelationship qr = new QueryRelationship();
-    QueryParentChild qpc = new QueryParentChild();
-    public static Driver driver = new Driver();
+    ListEveryone le;
+    AddPerson addPerson;
+    ConnectionChain cc;
+    DefineRelation define;
+    QueryRelationship qr;
+    QueryParentChild qpc;
+    public static Driver driver;
     public static final int AGE = 16;
     
     public MiniNet() 
     {
+        
         initComponents();
         setFrame();
+        try 
+        {
+            driver = new Driver();
+            le = new ListEveryone();
+            addPerson = new AddPerson();
+            cc = new ConnectionChain();
+            define = new DefineRelation();
+            qr = new QueryRelationship();
+            qpc = new QueryParentChild();
+        } 
+        catch (IOException ioe) 
+        {
+            JOptionPane.showMessageDialog(null, ioe);
+            System.exit(0);
+        }
     }
     
     private void setFrame()
@@ -157,10 +178,19 @@ public class MiniNet extends javax.swing.JFrame {
         if(JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Really exiting?", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION)
         {
-               FileOperation.writePeopleToFile(MiniNet.driver.getTheMiniNet());
-               FileOperation.writeRelationsToFile(MiniNet.driver.getRelations());
-               System.exit(0);
-        }else{
+            try 
+            {
+                FileOperation.writePeopleToFile(MiniNet.driver.getTheMiniNet());
+                FileOperation.writeRelationsToFile(MiniNet.driver.getRelations());
+            } 
+            catch (IOException ioe) 
+            {
+                JOptionPane.showMessageDialog(null, ioe);     
+            }
+            System.exit(0);          
+        }
+        else
+        {
             return;
         }
     }//GEN-LAST:event_formWindowClosing

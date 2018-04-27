@@ -21,9 +21,6 @@ import mininet.NoParentException;
  */
 public class ListEveryone extends javax.swing.JFrame
 {
-    
-    
-    
     /**
      * Creates new form ListEveryone
      */
@@ -192,45 +189,47 @@ public class ListEveryone extends javax.swing.JFrame
     
     private void deleteRelations(String name) throws NoParentException
     {
-        List <Relation> relations = MiniNet.driver.getRelations();
-        List <String> relationType = new ArrayList<String>();
-
         //delete the corresponding person's relations in the MiniNet
-        
-        getRelationType(name);
-        
-        for(int i = 0;i < relations.size();i++)
+        if(getRelationType(name).contains("Parent") &&
+                MiniNet.driver.getPersonByName(name) instanceof Adult)
         {
-            Relation r = relations.get(i);
+            throw new NoParentException();
+        }
+        else
+        {
+            List <Relation> relations = MiniNet.driver.getRelations();
             
-            relationType.add(getRelationType(name));
-            
-            if(relationType.contains("Parent") && 
-               MiniNet.driver.getPersonByName(name) instanceof Adult)
+            for(int i = 0;i < relations.size();i++)
             {
-                throw new NoParentException();     
-            }
-            else
-            {
-                relations.remove(r);
-                //restroing the arraylist's size by subtracting 1
-                //from each index after removing the particular object
-                //for looping over all the elements in the arraylist
-                i--;
+                Relation r = relations.get(i);
+                
+                if(name.equals(r.getName1()) || name.equals(r.getName2()))
+                {
+                    relations.remove(r);
+                    //restroing the arraylist's size by subtracting 1
+                    //from each index after removing the particular object
+                    //for looping over all the elements in the arraylist
+                    
+                    i--;
+                }     
+
             }
         }
+
     }
     
-    public String getRelationType(String name)
+    public List<String> getRelationType(String name)
     {
+        List<String> relationType = new ArrayList<String>();
+        
         for(Relation r:MiniNet.driver.getRelations())
         {
             if(name.equals(r.getName1()) || name.equals(r.getName2()))
             {
-                return r.getRelationType();
+                relationType.add(r.getRelationType());
             }
         }
-        return "";
+        return relationType;
     }
     
     private void refTable()
@@ -240,7 +239,7 @@ public class ListEveryone extends javax.swing.JFrame
         String[] tableHeads = new String[]{"Name", "PhotoPath", "Status", "Gender", "Age", "State"};
         
         dtm.setColumnIdentifiers(tableHeads);
-        
+       
         List<Person> data = MiniNet.driver.getTheMiniNet();
         
         for(int i = 0; i < data.size();i++)
@@ -253,9 +252,14 @@ public class ListEveryone extends javax.swing.JFrame
                 
                 dtm.addRow(dataRow);
             }
-        }
+        }        
         table.setModel(dtm);
     }
+    
+//    private String checkFileExistence()
+//    {
+//        
+//    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBDelete;

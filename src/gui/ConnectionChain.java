@@ -159,7 +159,7 @@ public class ConnectionChain extends javax.swing.JFrame
         
         for(RelationPath rp:path)
         {
-            rp.setPath("Shortest Path: ".concat(rp.getPath()));
+            rp.setPath("Closest Connection: ".concat(rp.getPath()));
         }
         
         this.refTable(data);
@@ -228,7 +228,9 @@ public class ConnectionChain extends javax.swing.JFrame
             pn.setParent(p);
             if(pn.getName().equals(target))
             {
-                data.add(new RelationPath(p.getRelation()+"<"+this.getRelationBetween(pn.getName(), p.getName())+">"+pn.getName()));
+                data.add(new RelationPath(p.getRelation()+"<"
+                        +this.getRelationBetween(pn.getName(), p.getName())
+                        +">"+pn.getName()));
                 continue;
             }
             if(!(p.getRelation().indexOf(pn.getName())>=0))
@@ -242,7 +244,8 @@ public class ConnectionChain extends javax.swing.JFrame
     {
         for(Relation r:MiniNet.driver.getRelations())
         {
-            if((r.getName1().equals(name1)&&r.getName2().equals(name2))||(r.getName2().equals(name1)&&r.getName1().equals(name2)))
+            if((r.getName1().equals(name1)&&r.getName2().equals(name2))||
+                    (r.getName2().equals(name1)&&r.getName1().equals(name2)))
             {
                 return r.getRelationType();
             }

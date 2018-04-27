@@ -4,6 +4,8 @@
   */
 package mininet;
 import gui.MiniNet;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +17,7 @@ public class Driver
     private List<Relation> relations;
     
     
-    public Driver()
+    public Driver() throws IOException
     {
         theMiniNet = FileOperation.readFromFile();
         relations = FileOperation.readRelation();
