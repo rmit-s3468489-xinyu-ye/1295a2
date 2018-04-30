@@ -47,7 +47,7 @@
                   <Component id="jLABAge" min="-2" pref="68" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jLABimage" min="-2" pref="350" max="-2" attributes="0"/>
+              <Component id="jLABImage" min="-2" pref="350" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -97,7 +97,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Component id="jLABimage" min="-2" pref="325" max="-2" attributes="0"/>
+                  <Component id="jLABImage" min="-2" pref="325" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
@@ -150,7 +150,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLABFather">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLABimage">
+    <Component class="javax.swing.JLabel" name="jLABImage">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">

@@ -11,11 +11,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class FileOperation 
 {
     
-    public static List<Person> readFromFile() throws IOException
+    public static List<Person> readFromFile() throws Exception
     {
         String message = "";
         
@@ -43,15 +44,16 @@ public class FileOperation
                 }
                 args = line.split(",");
                 
-                if (Integer.parseInt(args[4]) > 16) 
+                if (Integer.parseInt(args[4]) > 16)
                 {
+                    
                     people.add(new Adult(args[0], args[1], args[2],
-                            args[3].charAt(0), Integer.parseInt(args[4]), args[5]));
+                            args[3].charAt(0), Integer.parseInt(args[4]), args[5]));                 
                 }
                 else
                 {
                     people.add(new Dependent(args[0], args[1], args[2],
-                            args[3].charAt(0), Integer.parseInt(args[4]), args[5]));         
+                            args[3].charAt(0), Integer.parseInt(args[4]), args[5]));
                 }
             }
             //release the resource
@@ -60,7 +62,7 @@ public class FileOperation
         return people;
     }
     
-    public static List<Relation> readRelation() throws IOException
+    public static List<Relation> readRelation() throws Exception
     {   
         String message = "";
         

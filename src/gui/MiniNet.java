@@ -5,11 +5,13 @@
  */
 package gui;
 
+import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import mininet.Driver;
 import mininet.FileOperation;
 
@@ -47,11 +49,18 @@ public class MiniNet extends javax.swing.JFrame
             qr = new QueryRelationship();
             qpc = new QueryParentChild();
         } 
-        catch (IOException ioe) 
+        catch (Exception e) 
         {
-            JOptionPane.showMessageDialog(null, ioe);
+            JOptionPane.showMessageDialog(null, e);
             System.exit(0);
         }
+        
+        jMILE.setAccelerator(KeyStroke.getKeyStroke('L', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        jMIAP.setAccelerator(KeyStroke.getKeyStroke('A', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        jMIQR.setAccelerator(KeyStroke.getKeyStroke('Q', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        jMIFPC.setAccelerator(KeyStroke.getKeyStroke('F', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        jMICC.setAccelerator(KeyStroke.getKeyStroke('C', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
+        jMIR.setAccelerator(KeyStroke.getKeyStroke('R', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
     }
     
     private void setFrame()
@@ -72,13 +81,13 @@ public class MiniNet extends javax.swing.JFrame
 
         jMenuBar1 = new javax.swing.JMenuBar();
         View = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        jMILE = new javax.swing.JMenuItem();
+        jMIAP = new javax.swing.JMenuItem();
+        jMIQR = new javax.swing.JMenuItem();
+        jMIFPC = new javax.swing.JMenuItem();
+        jMICC = new javax.swing.JMenuItem();
         Query = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMIR = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -89,57 +98,57 @@ public class MiniNet extends javax.swing.JFrame
 
         View.setText("View");
 
-        jMenuItem1.setText("List Everyone");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMILE.setText("List Everyone");
+        jMILE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMILEActionPerformed(evt);
             }
         });
-        View.add(jMenuItem1);
+        View.add(jMILE);
 
-        jMenuItem5.setText("Add a Person");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMIAP.setText("Add a Person");
+        jMIAP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMIAPActionPerformed(evt);
             }
         });
-        View.add(jMenuItem5);
+        View.add(jMIAP);
 
-        jMenuItem2.setText("Query Relationship");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMIQR.setText("Query Relationship");
+        jMIQR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMIQRActionPerformed(evt);
             }
         });
-        View.add(jMenuItem2);
+        View.add(jMIQR);
 
-        jMenuItem4.setText("Find Parent/Child");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMIFPC.setText("Find Parent/Child");
+        jMIFPC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMIFPCActionPerformed(evt);
             }
         });
-        View.add(jMenuItem4);
+        View.add(jMIFPC);
 
-        jMenuItem6.setText("Connection Chain");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        jMICC.setText("Connection Chain");
+        jMICC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                jMICCActionPerformed(evt);
             }
         });
-        View.add(jMenuItem6);
+        View.add(jMICC);
 
         jMenuBar1.add(View);
 
         Query.setText("Edit");
 
-        jMenuItem3.setText("Relationships");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMIR.setText("Relationships");
+        jMIR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMIRActionPerformed(evt);
             }
         });
-        Query.add(jMenuItem3);
+        Query.add(jMIR);
 
         jMenuBar1.add(Query);
 
@@ -159,20 +168,19 @@ public class MiniNet extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMILEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMILEActionPerformed
        
-        le.setVisible(true);
-        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        le.setVisible(true);   
+    }//GEN-LAST:event_jMILEActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void jMIAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAPActionPerformed
         
         addPerson.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_jMIAPActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRActionPerformed
         define.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMIRActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         if(JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Really exiting?", JOptionPane.YES_NO_OPTION,
@@ -195,17 +203,17 @@ public class MiniNet extends javax.swing.JFrame
         }
     }//GEN-LAST:event_formWindowClosing
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMIQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIQRActionPerformed
         qr.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMIQRActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMIFPCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFPCActionPerformed
         qpc.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jMIFPCActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void jMICCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICCActionPerformed
         cc.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_jMICCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,12 +253,12 @@ public class MiniNet extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Query;
     private javax.swing.JMenu View;
+    private javax.swing.JMenuItem jMIAP;
+    private javax.swing.JMenuItem jMICC;
+    private javax.swing.JMenuItem jMIFPC;
+    private javax.swing.JMenuItem jMILE;
+    private javax.swing.JMenuItem jMIQR;
+    private javax.swing.JMenuItem jMIR;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }

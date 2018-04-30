@@ -1,12 +1,13 @@
 Adam,,,M,35,VIC
 Alex Smith,images/3170_1.png,student at RMIT,M,21,WA
-Alice,,,F,30,VIC
+Alice,images/Alice.jpg,,F,30,VIC
 Asakusa Tokyo,images/115705.jpg,,M,21,VIC
 Asano,images/IMG_2070.JPG,feeling dizzy,M,27,VIC
-Ascent Sport,images/IMG_0051.JPG,Just had been refuelled,M,27,VIC
+Ascent Sport,images/IMG_0470.JPG,Just had been refuelled,M,27,VIC
 Ben Turner,images/IMG_2035.jpg,manager at Coles,M,35,VIC
 Bob,,,M,29,VIC
 Camry Toyota,images/41446.png,just had an inspection on the chassis,F,28,VIC
+Carl Wong,images/IMG_0488.JPG,CFA at Vanguard,M,32,VIC
 Chauffeur Bear,images/IMG_0068.jpg,starting the engine,M,27,VIC
 Evangelos Papadopoulos,images/153846.jpg,Selling ice cream on the beach,M,32,VIC
 Fiesta Ford,images/IMG_9348.jpg,keep moving,F,25,VIC

@@ -5,6 +5,7 @@
  */
 package gui;
 
+import java.awt.Image;
 import java.util.List;
 import javax.swing.ImageIcon;
 import mininet.Adult;
@@ -30,11 +31,13 @@ public class Profile extends javax.swing.JFrame
         
         if (path.equals(""))
         {
-            this.jLABimage.setText("No Image");
+            this.jLABImage.setText("No Image");
         }
         else
         {
-            this.jLABimage.setIcon(new ImageIcon(path));
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon("").getImage()
+                    .getScaledInstance(jLABImage.getWidth(), jLABImage.getHeight(), Image.SCALE_SMOOTH));
+            this.jLABImage.setIcon(new ImageIcon(path));
         }      
         
         this.jLABname.setText(p.getName());
@@ -119,7 +122,7 @@ public class Profile extends javax.swing.JFrame
         jLABGender = new javax.swing.JLabel();
         jLABState = new javax.swing.JLabel();
         jLABFather = new javax.swing.JLabel();
-        jLABimage = new javax.swing.JLabel();
+        jLABImage = new javax.swing.JLabel();
         jLABAge = new javax.swing.JLabel();
         jLABMother = new javax.swing.JLabel();
 
@@ -139,7 +142,7 @@ public class Profile extends javax.swing.JFrame
 
         jLabM.setText("Mother: ");
 
-        jLABimage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLABImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,7 +169,7 @@ public class Profile extends javax.swing.JFrame
                     .addComponent(jLABMother, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLABAge, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addComponent(jLABimage, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLABImage, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -205,7 +208,7 @@ public class Profile extends javax.swing.JFrame
                                 .addComponent(jLabF, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabM))))
-                    .addComponent(jLABimage, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLABImage, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -216,10 +219,10 @@ public class Profile extends javax.swing.JFrame
     private javax.swing.JLabel jLABAge;
     private javax.swing.JLabel jLABFather;
     private javax.swing.JLabel jLABGender;
+    private javax.swing.JLabel jLABImage;
     private javax.swing.JLabel jLABMother;
     private javax.swing.JLabel jLABState;
     private javax.swing.JLabel jLABStatus;
-    private javax.swing.JLabel jLABimage;
     private javax.swing.JLabel jLABname;
     private javax.swing.JLabel jLabF;
     private javax.swing.JLabel jLabM;
