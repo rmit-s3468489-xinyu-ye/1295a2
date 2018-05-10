@@ -1,3 +1,4 @@
+Adam,Asakusa Tokyo,Classmate
 Alex Smith,Bob,Friend
 Alex Smith,Kevin YE,Colleague
 Alice,Bob,Couple

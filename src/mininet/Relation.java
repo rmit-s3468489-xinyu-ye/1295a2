@@ -57,6 +57,5 @@ public class Relation
             }
             return r1.getName1().compareTo(r2.getName1());
         }
-    };
-    
+    }; 
 }

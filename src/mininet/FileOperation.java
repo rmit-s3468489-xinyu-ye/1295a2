@@ -15,14 +15,15 @@ import javax.swing.JOptionPane;
 
 public class FileOperation 
 {
+    public static int AGE = 16;
     
-    public static List<Person> readFromFile() throws Exception
+    public static List<Person> readPeople() throws Exception
     {
         String message = "";
         
         String line;
         String args[];
-        List<Person> people=new ArrayList();
+        List<Person> people = new ArrayList();
         
             File f = new File("people.txt");
             
@@ -44,7 +45,7 @@ public class FileOperation
                 }
                 args = line.split(",");
                 
-                if (Integer.parseInt(args[4]) > 16)
+                if (Integer.parseInt(args[4]) > AGE)
                 {
                     
                     people.add(new Adult(args[0], args[1], args[2],
@@ -62,11 +63,11 @@ public class FileOperation
         return people;
     }
     
-    public static List<Relation> readRelation() throws Exception
+    public static List<Relation> readRelations() throws Exception
     {   
         String message = "";
         
-        List<Relation> relations=new ArrayList();
+        List<Relation> relations = new ArrayList();
         String line;
         String args[];
 

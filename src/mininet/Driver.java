@@ -12,15 +12,24 @@ import java.util.List;
 
 public class Driver
 {
-    
     private List<Person> theMiniNet;
     private List<Relation> relations;
+    public DBConnect dbTest;
     
-    
-    public Driver() throws IOException
+    public Driver() throws Exception
     {
-        theMiniNet = FileOperation.readFromFile();
-        relations = FileOperation.readRelation();
+    		try 
+    		{
+	    	dbTest = new DBConnect();
+	    	dbTest.connect();
+	    	theMiniNet = dbTest.readFromDB();
+    		}
+    		catch(Exception e)
+    		{
+    			//System.out.println(e);
+    			theMiniNet = FileOperation.readPeople();
+    		}
+        relations = FileOperation.readRelations();
     }
     
     public List<Relation> getRelations()
@@ -149,8 +158,6 @@ public class Driver
                     r.setRelationType("Friend");
                     
                     this.relations.add(r);
-                    
-                    
                     
                     message = "Successfully make them friends !";
                 }
@@ -487,8 +494,7 @@ public class Driver
      
                 setParents(p1.getName(), name);
                 
-                message = "This dependent is successfully"
-                        + " added into MiniNet.";
+                message = "This dependent is successfully added !";
             }
             else
             {
@@ -511,8 +517,7 @@ public class Driver
         
         theMiniNet.add(adult);
         Collections.sort(theMiniNet,Person.nameComparator);
-        message = "This adult is successfully "
-                + "added";
+        message = "This adult is successfully added !";
         
         return message;
     }

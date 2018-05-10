@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+
+import mininet.DBConnect;
 import mininet.Driver;
 import mininet.FileOperation;
 
@@ -55,6 +57,7 @@ public class MiniNet extends javax.swing.JFrame
             System.exit(0);
         }
         
+        //Set up shortcut keys for menu items
         jMILE.setAccelerator(KeyStroke.getKeyStroke('L', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         jMIAP.setAccelerator(KeyStroke.getKeyStroke('A', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         jMIQR.setAccelerator(KeyStroke.getKeyStroke('Q', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
@@ -77,7 +80,8 @@ public class MiniNet extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() 
+    {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         View = new javax.swing.JMenu();
@@ -168,17 +172,20 @@ public class MiniNet extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMILEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMILEActionPerformed
+    private void jMILEActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_jMILEActionPerformed
        
         le.setVisible(true);   
     }//GEN-LAST:event_jMILEActionPerformed
 
-    private void jMIAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAPActionPerformed
+    private void jMIAPActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_jMIAPActionPerformed
         
         addPerson.setVisible(true);
     }//GEN-LAST:event_jMIAPActionPerformed
 
-    private void jMIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRActionPerformed
+    private void jMIRActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_jMIRActionPerformed
         define.setVisible(true);
     }//GEN-LAST:event_jMIRActionPerformed
 
@@ -186,14 +193,15 @@ public class MiniNet extends javax.swing.JFrame
         if(JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Really exiting?", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION)
         {
-            try 
+            try  
             {
-                FileOperation.writePeopleToFile(MiniNet.driver.getTheMiniNet());
+                //FileOperation.writePeopleToFile(MiniNet.driver.getTheMiniNet());
+            		driver.dbTest.writeToDB(MiniNet.driver.getTheMiniNet());
                 FileOperation.writeRelationsToFile(MiniNet.driver.getRelations());
             } 
-            catch (IOException ioe) 
+            catch (Exception e) 
             {
-                JOptionPane.showMessageDialog(null, ioe);     
+                JOptionPane.showMessageDialog(null, e);     
             }
             System.exit(0);          
         }
@@ -218,7 +226,8 @@ public class MiniNet extends javax.swing.JFrame
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) 
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -243,8 +252,10 @@ public class MiniNet extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable() 
+        {
+            public void run() 
+            {
                 new MiniNet().setVisible(true);
             }
         });
