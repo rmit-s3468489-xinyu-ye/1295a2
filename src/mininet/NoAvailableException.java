@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mininet;
-
 /**
  *
- * @author Xinyu YE s3468489
+ * @author Yifan ZHANG s3615625
  */
 public class NoAvailableException extends Exception
 {

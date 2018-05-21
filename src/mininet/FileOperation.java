@@ -1,10 +1,7 @@
-/**
- *
- * @author Xinyu YE s3468489
- */
 package mininet;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,22 +10,32 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
+/**
+*
+* @author Xinyu YE s3468489
+*/
 public class FileOperation 
-{
-    public static int AGE = 16;
+{	//The visibility of this constant
+	//has been set to public, as it is
+	//called in the method readFromDB in
+	//class DBConnect
+    public static int AGE = 16; //Avoid hard coding 
     
+    /**
+     * Read the data from the file people.txt
+     * into the MiniNet
+     * 
+     * @return an arrayList stores objects of the type Person
+     * @throws Exception
+     */
     public static List<Person> readPeople() throws Exception
     {
-        String message = "";
-        
-        String line;
-        String args[];
-        List<Person> people = new ArrayList();
+	        String message = "";     
+	        String line;
+	        String args[];
+	        List<Person> people = new ArrayList<Person>();
         
             File f = new File("people.txt");
-            
-//            if (!f.exists() || f.isDirectory())
-//                f.createNewFile();
             
             BufferedReader inputStream =
                     new BufferedReader(new FileReader("people.txt"));
@@ -63,11 +70,18 @@ public class FileOperation
         return people;
     }
     
+    /**
+     * Read the data from the file relations.txt
+     * into the MiniNet
+     * 
+     * @return an arrayList stores objects of the type Relation
+     * @throws Exception
+     */
     public static List<Relation> readRelations() throws Exception
     {   
         String message = "";
         
-        List<Relation> relations = new ArrayList();
+        List<Relation> relations = new ArrayList<Relation>();
         String line;
         String args[];
 
@@ -102,52 +116,90 @@ public class FileOperation
     }
     
     
-    public static void writePeopleToFile(List<Person> people) throws IOException
+    /**
+     * Write the arrayList people
+     * into the file people.txt
+     * 
+     * @param people
+     */
+    public static void writePeopleToFile(List<Person> people) 
     { 
-        String message = "";
-        
-        PrintWriter outputStream = null;
+    		new Thread() 
+    		{
+    			public void run() 
+    			{
+    				String message = "";
 
-            File f = new File("people.txt");
-       
-            outputStream =
-                    new PrintWriter(new FileOutputStream("people.txt"));
-        
-        for(int i=0; i <people.size(); i++)
-        {
-            String personInfo="";
-            Person p = people.get(i);
-            personInfo = p.getName() + ","  + p.getPhotoPath() + "," +
-                    p.getStatus() + "," + p.getGender() + "," + p.getAge() +
-                    "," + p.getState();
-            
-            outputStream.println(personInfo);
-        }
-        //release resource
-        outputStream.close( );
+    				PrintWriter outputStream = null;
+
+    				File f = new File("people.txt");
+
+    				try 
+    				{
+    					outputStream =
+    							new PrintWriter(new FileOutputStream("people.txt"));
+    				} 
+    				catch (FileNotFoundException e) 
+    				{
+    					JOptionPane.showMessageDialog(null, e);
+    				}
+
+        	        for(int i = 0; i <people.size(); i++)
+        	        {
+        	            String personInfo ="";
+        	            Person p = people.get(i);
+        	            personInfo = p.getName() + ","  + p.getPhotoPath() + "," +
+        	                    p.getStatus() + "," + p.getGender() + "," + p.getAge() +
+        	                    "," + p.getState();
+        	            
+        	            outputStream.println(personInfo);
+        	        }
+        	        //release resource
+        	        outputStream.close( );
+    			}
+    		}.start();
     }
     
-    public static void writeRelationsToFile(List<Relation> relations) throws IOException
+    /**
+     * Write the arrayList relations
+     * into the file relations.txt
+     * 
+     * @param relations
+     */
+    public static void writeRelationsToFile(List<Relation> relations) 
     {  
-        String message = "";
-        
-        PrintWriter outputStream = null;
+	    	new Thread() 
+	    	{
+	    		public void run() 
+	    		{
+	    			String message = "";
 
-            File f = new File("relations.txt");
+	    			PrintWriter outputStream = null;
 
-            outputStream =
-                    new PrintWriter(new FileOutputStream("relations.txt"));
-        
-        for(int i=0; i < relations.size(); i++)
-        {
-            String relation = "";
-            Relation r = relations.get(i);
-            relation = r.getName1() + "," + r.getName2() + "," + r.getRelationType();
-            
-            outputStream.println(relation);
-        }
-        //release the resource
-        outputStream.close( );
+	    			File f = new File("relations.txt");
+
+	    			try 
+	    			{
+	    				outputStream =
+	    						new PrintWriter(new FileOutputStream("relations.txt"));
+	    			} 
+	    			catch (FileNotFoundException e) 
+	    			{
+	    				JOptionPane.showMessageDialog(null, e);
+	    			}
+
+	    			for(int i=0; i < relations.size(); i++)
+	    			{
+	    				String relation = "";
+	    				Relation r = relations.get(i);
+	    				relation = r.getName1() + "," + r.getName2() + "," + r.getRelationType();
+
+	    				outputStream.println(relation);
+	    			}
+	    			//release the resource
+	    			outputStream.close( );
+	    		}
+	    	}.start();
     }
     
     /**
@@ -157,14 +209,14 @@ public class FileOperation
      * @return a particular user existed in the ArrayList people
      *
      */
-    private static Person getPersonByName(String name, List people)
-    {
-        for (Object o: people)
-        {
-            Person p = (Person)o;
-            if(p.getName().equals(name))
-                return p;
-        }
-        return null;
-    }  
+//    private static Person getPersonByName(String name, List people)
+//    {
+//        for (Object o: people)
+//        {
+//            Person p = (Person)o;
+//            if(p.getName().equals(name))
+//                return p;
+//        }
+//        return null;
+//    }  
 }

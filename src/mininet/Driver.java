@@ -1,7 +1,3 @@
- /**
-  *
-  * @author Xinyu YE s3468489
-  */
 package mininet;
 import gui.MiniNet;
 import java.io.FileNotFoundException;
@@ -9,31 +5,40 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+/**
+*
+* @author Xinyu YE s3468489
+*/
 public class Driver
 {
     private List<Person> theMiniNet;
     private List<Relation> relations;
-    public DBConnect dbTest;
+    private DBConnect dbTest;
     
     public Driver() throws Exception
     {
     		try 
-    		{
-	    	dbTest = new DBConnect();
-	    	dbTest.connect();
-	    	theMiniNet = dbTest.readFromDB();
-    		}
-    		catch(Exception e)
-    		{
-    			//System.out.println(e);
+    		{//When launch the program, the data of people
+    		//stored in the text file should overwrite the
+    		//corresponding data in the database
     			theMiniNet = FileOperation.readPeople();
     		}
+    		catch(Exception e)
+    		{//If people.txt does not exist, read the data
+    		//of people from the database
+    			dbTest = new DBConnect();
+		    	dbTest.connect();
+		    	theMiniNet = dbTest.readFromDB(); 
+    		}
+    		
+    		//Read the data of relations from releations.txt
         relations = FileOperation.readRelations();
     }
     
     public List<Relation> getRelations()
     {
+    		//Alphabetically Sort the names in every entry of relations,
+    		//before returning the list of relations
         Collections.sort(relations,Relation.nameComparator);
         return relations;
     }
@@ -43,7 +48,13 @@ public class Driver
         this.relations = relations;
     }
     
-    //Store relations
+    /**
+     * Add different relations into the list relations
+     * 
+     * @param Relation r
+     * @return a specific string that indicates whether the intended operation
+     * 			is successful or not
+     */
     public String addRelations(Relation r)
     {
         String message = "";
@@ -122,29 +133,46 @@ public class Driver
     
     public void setTheMiniNet(List<Person> theMiniNet)
     {
+    		//Alphabetically sort names of people,
+    		//before setting the parameter list theMiniNet to
+    		//the field theMiniNet
         Collections.sort(theMiniNet,Person.nameComparator);
         this.theMiniNet = theMiniNet;
     }
     
-    public String makeFriends(String name1, String name2) 
+    /**
+     * Make two selected persons as friends
+     * 
+     * @param name1
+     * @param name2
+     * @return a specific string that indicates whether the intended operation
+     * 			is successful or not
+     * @throws NotToBeFriendsException
+     */
+    private String makeFriends(String name1, String name2) 
             throws NotToBeFriendsException
     {
         String message = "";
         
+        //If trying to make an adult and a dependent friend
         if(getPersonByName(name1).getClass()!=
            getPersonByName(name2).getClass())
         {
             throw new NotToBeFriendsException();
-            
         }
+        
         else
-        {
+        {	//If trying to make two children with an age gap
+        		//larger than 3 to be friends
             if (getPersonByName(name1) instanceof Dependent
+                    && getPersonByName(name2) instanceof Dependent
                     && Math.abs(getPersonByName(name1).getAge()
-                            - getPersonByName(name2).getAge()) > 3)
-                throw new NotToBeFriendsException();
-            else
+                            - getPersonByName(name2).getAge()) > 3) 
             {
+            		throw new NotToBeFriendsException();
+            }
+            else
+            {	//If the selected two persons are already friends
                 if(isFriend(name1, name2))
                 {
                     message = "They are already friends !";
@@ -158,27 +186,37 @@ public class Driver
                     r.setRelationType("Friend");
                     
                     this.relations.add(r);
+                    Collections.sort(relations,Relation.nameComparator);
                     
                     message = "Successfully make them friends !";
                 }
-                
             }
         }
         return message;
     }
     
-    public String setClassmate(String name1, String name2) 
+    /**
+     * Set two selected persons as classmates
+     * 
+     * @param name1
+     * @param name2
+     * @return a specific string that indicates whether the intended operation
+     * 			is successful or not
+     * @throws NotToBeClassmatesException
+     */
+    private String setClassmate(String name1, String name2) 
             throws NotToBeClassmatesException
     {
         String message = "";
         
+        //If trying to involve a young child in a classmate relation
         if(getPersonByName(name1).getAge() <= 2 
                 || getPersonByName(name2).getAge() <= 2)
         {
             throw new NotToBeClassmatesException();
         }
         else
-        {
+        {	//If the selected two persons are already classmates
             if(isClassmate(name1, name2))
             {
                 message = "They are already classmates !";
@@ -199,11 +237,21 @@ public class Driver
         return message;
     }
     
-    public String setColleague(String name1, String name2) 
+    /**
+     * Set two selected persons as colleagues
+     * 
+     * @param name1
+     * @param name2
+     * @return a specific string indicates whether the intended operation
+     * 			is successful or not
+     * @throws NotToBeColleaguesException
+     */
+    private String setColleague(String name1, String name2) 
             throws NotToBeColleaguesException
     {
         String message = "";
         
+        //If trying to involve a dependent in a colleague relation
         if ((getPersonByName(name1).getClass() !=
              getPersonByName(name2).getClass()) ||
              (getPersonByName(name1) instanceof Dependent &&
@@ -212,7 +260,7 @@ public class Driver
             throw new NotToBeColleaguesException();
         }
         else
-        {
+        {	//If the selected two persons are already colleagues
             if(isColleague(name1, name2))
             {
                 message = "They are already colleagues !";
@@ -225,38 +273,43 @@ public class Driver
                 r.setRelationType("Colleague");
                 
                 this.relations.add(r);
+                Collections.sort(relations,Relation.nameComparator);
                 
                 message =  "Successfully set each other as colleague !";
             }
         }
-        
         return message;
     }
-    private String compareName(String name1,String name2,boolean b)
-    {
-        if(b)
-        {
-        return name1.compareTo(name2)<=0?name1:name2;
-        }else{
-            return name1.compareTo(name2)>0?name1:name2;
-        }
-    }
     
-    /*
-    As stated in the specification,
-    all couples are exclusive to other couples,
-    hence before coupling two particular adults,
-    their spouse name will be checked, two particular adults can only
-    become spouses when they are both not in a couple relationship with others, and
-    we assume that no homosexual couples in our case.
-    
-    Plus, dependents are not eligible for becoming couples.
-    */
-    public String setSpouse(String name1, String name2)
+    /**
+     * Set two selected persons as a couple
+     * 
+     * As stated in the specification,
+     * all couples are exclusive to other couples,
+     * hence before coupling two selected adults,
+     * their spouse's name will be checked.
+     * 
+     * Any two adults can only be coupled when they are both not 
+     * in a couple relationship with others, and we assume that
+     * no homosexual couples are allowed in our case, and 
+     * there are not any other gender options available other than
+     * "M(ale)" and "F(emale)".    
+     * 
+     * Plus, dependents are not eligible for becoming couples.
+     * 
+     * @param name1
+     * @param name2
+     * @return a specific string that indicates whether the intended operation
+     * 			is successful or not
+     * @throws NoAvailableException
+     * @throws NotToBeCoupledException
+     */
+    private String setSpouse(String name1, String name2)
             throws NoAvailableException, NotToBeCoupledException
     {
         String message = "";
         
+        //If trying to couple an adult and a dependent 
         if(getPersonByName(name1).getClass()
                 != getPersonByName(name2).getClass())
         {
@@ -264,21 +317,21 @@ public class Driver
         }
         else if(getPersonByName(name1) instanceof Adult &&
                 getPersonByName(name2) instanceof Adult)
-        {
+        {	//If the selected two adults are already a couple
             if(findSpouse(name1).equals(name2))
             {
                 message = "The selected two persons are already a couple !";
             }
-            else if(!findSpouse(name1).equals("")||!findSpouse(name2).equals(""))
+            else if(!findSpouse(name1).equals("")||!findSpouse(name2).equals(""))//If both of the selected two adults are not single
             {
                 throw new NoAvailableException();
             }
             else
-            {
+            {//If trying to couple two adults with the same gender
                 if(getPersonByName(name1).getGender() ==
                    getPersonByName(name2).getGender())
                 {
-                    message = "Only people of different genders can be couple !";
+                    message = "Only people of different genders can be coupled !";
                 }
                 else
                 {
@@ -288,6 +341,7 @@ public class Driver
                     r.setRelationType("Couple");
                     
                     this.relations.add(r);
+                    Collections.sort(relations,Relation.nameComparator);
                     
                     message =  "Successfully set each other as spouse";
                 }
@@ -297,11 +351,23 @@ public class Driver
         return message;
     }
     
-    public String setParents(String name1, String name2) 
+    /**
+     * Set two selected persons
+     * in a parent-child relation
+     * 
+     * @param name1
+     * @param name2
+     * @return a specific string that indicates whether the intended operation
+     * 			is successful or not
+     * @throws NoParentException
+     */
+    private String setParents(String name1, String name2) 
             throws NoParentException
     {
         String message = "";
         
+        //If trying to make the same type of person involved
+        //in a parent-child relation
         if((getPersonByName(name1).getClass()
                 == getPersonByName(name2).getClass()))
         {
@@ -309,11 +375,11 @@ public class Driver
                     + " be in parent-child relation !";
         }
         else if(getPersonByName(name1) instanceof Adult)
-        {
+        {	//If trying to add a child to an adult who does not have a spouse
             if(findSpouse(name1).equals(""))
                 throw new NoParentException();
             else
-            {
+            {	//If the selected two persons are already parent-child
                 if(isParent(name1, name2))
                 {
                     message = "They are already in a"
@@ -326,8 +392,8 @@ public class Driver
                     r.setName2(compareName(name1,name2,false));
                     r.setRelationType("Parent");
                     
-                    //Avoid recursivelly call
                     this.relations.add(r);
+                    Collections.sort(relations,Relation.nameComparator);
                     
                     Relation r1 = new Relation();
                     name1=findSpouse(name1);
@@ -336,17 +402,18 @@ public class Driver
                     r1.setRelationType("Parent");
                     
                     this.relations.add(r1);
+                    Collections.sort(relations,Relation.nameComparator);
                     
                     message = "Successfully set them as parent-child !"; 
                 }
             }
         }
         else if(getPersonByName(name2) instanceof Adult)
-        {
+        {	//If trying to add a child to an adult who does not have a spouse
             if(findSpouse(name2).equals(""))
                 throw new NoParentException();
             else
-            {
+            {	//If the selected two persons are already parent-child
                 if(isParent(name2, name1))
                 {
                     message = "They are already in a"
@@ -359,8 +426,8 @@ public class Driver
                     r.setName2(compareName(name1,name2,false));
                     r.setRelationType("Parent");
 
-                    //Avoid recursivelly call
                     this.relations.add(r);
+                    Collections.sort(relations,Relation.nameComparator);
 
                     Relation r1 = new Relation();
                     name2=findSpouse(name2);
@@ -369,6 +436,7 @@ public class Driver
                     r1.setRelationType("Parent");
 
                     this.relations.add(r1);
+                    Collections.sort(relations,Relation.nameComparator);
 
                     message = "Successfully set them as parent-child !";
                 }
@@ -377,7 +445,15 @@ public class Driver
         return message;
     }
      
-    public boolean isClassmate(String name1, String name2)
+    /**
+     * Test whether two selected persons
+     * are already classmates
+     * 
+     * @param name1
+     * @param name2
+     * @return true if they are/false if they are not
+     */
+    private boolean isClassmate(String name1, String name2)
     {
         List <Relation> relations = MiniNet.driver.getRelations();
         
@@ -395,7 +471,15 @@ public class Driver
         return false;
     }
      
-    public boolean isColleague(String name1, String name2)
+    /**
+     * Test whether two selected persons
+     * are already colleagues
+     * 
+     * @param name1
+     * @param name2
+     * @return true if they are/false if they are not
+     */
+    private boolean isColleague(String name1, String name2)
     {
         List <Relation> relations = MiniNet.driver.getRelations();
         
@@ -413,7 +497,15 @@ public class Driver
         return false;
     }
     
-    public boolean isFriend(String name1, String name2)
+    /**
+     * Test whether two selected persons
+     * are already friends
+     * 
+     * @param name1
+     * @param name2
+     * @return true if they are/false if they are not
+     */
+    private boolean isFriend(String name1, String name2)
     {
         List <Relation> relations = MiniNet.driver.getRelations();
         
@@ -431,7 +523,15 @@ public class Driver
         return false;
     }
     
-    public boolean isParent(String name1, String name2)
+    /**
+     * Test whether two selected persons
+     * are already involved in a parent-child relation
+     * 
+     * @param name1
+     * @param name2
+     * @return true if they are/false if they are not
+     */
+    private boolean isParent(String name1, String name2)
     {
         List <Relation> relations = MiniNet.driver.getRelations();
         
@@ -449,7 +549,14 @@ public class Driver
         return false;
     }
      
-    public String findSpouse(String name)
+    /**
+     * Find out a selected person's spouse
+     * 
+     * @param name
+     * @return the name of the selected person's spouse if found/
+     * 			an empty string if not found
+     */
+    private String findSpouse(String name)
     {
         List <Relation> relations = MiniNet.driver.getRelations();
         
@@ -468,6 +575,21 @@ public class Driver
         return "";
     }
     
+    
+    /**
+     * Add a dependent into the MiniNet
+     * 
+     * @param name
+     * @param photoPath
+     * @param status
+     * @param gender
+     * @param age
+     * @param state
+     * @param fatherName
+     * @param motherName
+     * @return
+     * @throws NoParentException
+     */
     public String addDependent(String name, String photoPath, String status,
             char gender, int age, String state,
             String fatherName, String motherName) throws NoParentException
@@ -475,39 +597,49 @@ public class Driver
         boolean isFatherExisted;
         boolean isMotherExisted;
         String message = "";
-        
+  
         isFatherExisted = isPersonExisted(fatherName);
         isMotherExisted = isPersonExisted(motherName);
         
-        if (isFatherExisted && isMotherExisted)
+        if (isFatherExisted && isMotherExisted)//If trying to add a child to two adults
         {
-            Person p1 = getPersonByName(fatherName);
-            Person p2 = getPersonByName(motherName);
-                  
-            if(findSpouse(p1.getName()).equals(p2.getName()))
+	        	
+	        	//If trying to add a child to two adults who are a couple
+            if(findSpouse(motherName).equals(fatherName))
             {
                 Dependent kid = new Dependent(name, photoPath, status, gender, age, state);
                 
                 theMiniNet.add(kid);
-                
+                //Alphabetically sort the names of persons in MiniNet
                 Collections.sort(theMiniNet,Person.nameComparator);
      
-                setParents(p1.getName(), name);
+                setParents(fatherName, name);
                 
                 message = "This dependent is successfully added !";
             }
             else
-            {
+            {//If trying to add a child to two adults who are not a couple
                 throw new NoParentException();
             }        
         }
         else
-        {
+        {//If adding a child to one adult
             throw new NoParentException();
         }
         return message;
     }
     
+    /**
+     * Add an adult into the MiniNet
+     * 
+     * @param name
+     * @param photoPath
+     * @param status
+     * @param gender
+     * @param age
+     * @param state
+     * @return
+     */
     public String addAdult(String name, String photoPath, String status,
             char gender, int age, String state)
     {
@@ -516,12 +648,42 @@ public class Driver
         Person adult = new Adult(name, photoPath, status, gender, age, state);
         
         theMiniNet.add(adult);
+        //Alphabetically sort the names of persons in MiniNet
         Collections.sort(theMiniNet,Person.nameComparator);
+        
         message = "This adult is successfully added !";
         
         return message;
     }
     
+    /**
+     * Determine the sequence of the two names to be stored
+     * in a relation record
+     * 
+     * @param name1
+     * @param name2
+     * @param b
+     * @return
+     */
+    private String compareName(String name1, String name2, boolean b)
+    {
+        if(b)
+        {
+        		return name1.compareTo(name2)<=0?name1 : name2;
+        }
+        else
+        {
+            return name1.compareTo(name2)>0?name1 : name2;
+        }
+    }
+    
+    /**
+     * Test whether a person is existed in MiniNet
+     * by passing his/her name in as the parameter
+     * 
+     * @param name
+     * @return true if existed/false if non-existed
+     */
     public boolean isPersonExisted(String name)
     {
         for (Person p:theMiniNet)
@@ -532,6 +694,13 @@ public class Driver
         return false;
     }
     
+    /**
+     * Return a person object by passing his/her name in
+     * as the parameter
+     * 
+     * @param name
+     * @return the person p if found/null if not found
+     */
     public Person getPersonByName(String name)
     {
         for (Person p:theMiniNet)

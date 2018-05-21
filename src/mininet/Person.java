@@ -6,11 +6,6 @@ import java.util.*;
  */
 public abstract class Person 
 {
-    /*
-     * The following fields' access control modifiers
-     * have been set to be protected, for User's subclasses
-     * to inherit
-     */
     private String name, photoPath, status, state;
     private char gender;
     private int age;
@@ -84,7 +79,12 @@ public abstract class Person
     public void setState(String state)
     {
         this.state = state;
-    } 
+    }
+    
+    /**
+     * Method to compare the names of persons
+     * in the MiniNet alphabetically
+     */
     public static Comparator<Person> nameComparator = new Comparator<Person>() 
     {
 

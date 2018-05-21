@@ -1,17 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mininet;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-
 /**
  *
- * @author xinyuye
+ * @author Xinyu YE s346849
  */
 public class PathNode 
 {
@@ -27,6 +21,7 @@ public class PathNode
         this.relation = relation;
         this.children = new Hashtable();
     }
+    
     public PathNode getParent() 
     {
         return parent;
@@ -66,6 +61,4 @@ public class PathNode
     {
         this.relation = relation;
     }
-    
-    
 }

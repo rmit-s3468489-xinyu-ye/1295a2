@@ -1,10 +1,9 @@
-/**
- *
- * @author Xinyu YE s3468489
- */
 package mininet;
 import java.util.*;
-
+/**
+*
+* @author Xinyu YE s3468489
+*/
 public class Adult extends Person 
 {
 

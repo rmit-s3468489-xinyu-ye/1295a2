@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mininet;
-
 import java.util.Comparator;
-
 /**
  *
- * @author Yifan ZHANG s3615625
+ * @author Xinyu YE s3468489
  */
 public class Relation 
 {
@@ -46,6 +39,11 @@ public class Relation
     {
         this.relationType = relationType;
     }
+    
+    /**
+     * Method to compare the names in a relation record
+     * in the alphabetic order 
+     */
     public static Comparator<Relation> nameComparator = new Comparator<Relation>() 
     {
         @Override

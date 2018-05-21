@@ -5,7 +5,7 @@ Asakusa Tokyo,images/115705.jpg,,M,21,VIC
 Asano,images/IMG_2070.JPG,feeling dizzy,M,27,VIC
 Ascent Sport,images/IMG_0470.JPG,Just had been refuelled,M,27,VIC
 Ben Turner,images/IMG_2035.jpg,manager at Coles,M,35,VIC
-Bob,,,M,29,VIC
+Bob,images/IMG_3916.PNG,,M,29,VIC
 Camry Toyota,images/41446.png,just had an inspection on the chassis,F,28,VIC
 Carl Wong,images/IMG_0488.JPG,CFA at Vanguard,M,32,VIC
 Chauffeur Bear,images/IMG_0068.jpg,starting the engine,M,27,VIC
@@ -21,4 +21,5 @@ Orkhan Azizlee,images/0464.png,I'm feeling like a boss,M,25,VIC
 RMIT University,images/IMG_0229.JPG,I'm full right now,F,26,VIC
 Ray Rui,images/IMG_0436.JPG,sales rep in Toyota dealership,M,40,VIC
 Sakura Gaimu,images/180422.png,,F,27,NSW
+Test0,,,M,24,ACT
 Zoe Foster,images/IMG_3717.JPG,Founder of ZFX,F,28,VIC
