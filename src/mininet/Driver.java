@@ -21,18 +21,18 @@ public class Driver
     		{//When launch the program, the data of people
     		//stored in the text file should overwrite the
     		//corresponding data in the database
-    			theMiniNet = FileOperation.readPeople();
+    			theMiniNet = FileOperation.readPeople();		
     		}
     		catch(Exception e)
     		{//If people.txt does not exist, read the data
     		//of people from the database
     			dbTest = new DBConnect();
 		    	dbTest.connect();
-		    	theMiniNet = dbTest.readFromDB(); 
+		    	theMiniNet = dbTest.readPeopleFromDB(); 
     		}
     		
     		//Read the data of relations from releations.txt
-        relations = FileOperation.readRelations();
+    		relations = FileOperation.readRelations();
     }
     
     public List<Relation> getRelations()
@@ -149,7 +149,7 @@ public class Driver
      * 			is successful or not
      * @throws NotToBeFriendsException
      */
-    private String makeFriends(String name1, String name2) 
+    public String makeFriends(String name1, String name2) 
             throws NotToBeFriendsException
     {
         String message = "";
@@ -204,7 +204,7 @@ public class Driver
      * 			is successful or not
      * @throws NotToBeClassmatesException
      */
-    private String setClassmate(String name1, String name2) 
+    public String setClassmate(String name1, String name2) 
             throws NotToBeClassmatesException
     {
         String message = "";
@@ -246,7 +246,7 @@ public class Driver
      * 			is successful or not
      * @throws NotToBeColleaguesException
      */
-    private String setColleague(String name1, String name2) 
+    public String setColleague(String name1, String name2) 
             throws NotToBeColleaguesException
     {
         String message = "";
@@ -304,7 +304,7 @@ public class Driver
      * @throws NoAvailableException
      * @throws NotToBeCoupledException
      */
-    private String setSpouse(String name1, String name2)
+    public String setSpouse(String name1, String name2)
             throws NoAvailableException, NotToBeCoupledException
     {
         String message = "";
@@ -361,7 +361,7 @@ public class Driver
      * 			is successful or not
      * @throws NoParentException
      */
-    private String setParents(String name1, String name2) 
+    public String setParents(String name1, String name2) 
             throws NoParentException
     {
         String message = "";

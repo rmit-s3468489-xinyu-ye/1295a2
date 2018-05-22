@@ -36,7 +36,7 @@ public class DBConnect
 	 * @return
 	 * @throws SQLException
 	 */
-	public List readFromDB() throws SQLException
+	public List readPeopleFromDB() throws SQLException
 	{
 		List<Person> result = new ArrayList<Person>();
 		
@@ -72,36 +72,30 @@ public class DBConnect
 	 * @param person
 	 * @throws Exception
 	 */
-	public void writeToDB(List<Person> person) throws Exception
+	public void writePeopleToDB(List<Person> person) throws Exception
 	{
-		new Thread()
+		try 
 		{
-			public void run() 
+			Statement stmt = connection.createStatement(); 
+
+			stmt.executeUpdate("DROP TABLE IF EXISTS people"); 
+			stmt.executeUpdate("create table people (name varchar(100) not null, photo varchar(100), status varchar(100)"
+					+ ", gender varchar(1), age integer,state varchar(20));");
+
+			String sql = "";
+
+			for(int i = 0;i < person.size();i++)
 			{
-				try 
-				{
-					Statement stmt = connection.createStatement(); 
-
-					stmt.executeUpdate("DROP TABLE IF EXISTS people"); 
-					stmt.executeUpdate("create table people (name varchar(100) not null, photo varchar(100), status varchar(100)"
-							+ ", gender varchar(1), age integer,state varchar(20));");
-
-					String sql = "";
-
-					for(int i = 0;i < person.size();i++)
-					{
-						Person p = (Person)person.get(i);
-						sql = "insert into people"
-								+ " values ('"+p.getName()+"', '"+p.getPhotoPath()+"', '"+p.getStatus()+"','"+p.getGender()+"',"+p.getAge()+",'"+p.getState()+"');\n";
-						stmt.executeUpdate(sql);
-					}
-					stmt.close();  
-				}
-				catch(Exception e)
-				{
-					JOptionPane.showMessageDialog(null, e); 
-				}
+				Person p = (Person)person.get(i);
+				sql = "insert into people"
+						+ " values ('"+p.getName()+"', '"+p.getPhotoPath()+"', '"+p.getStatus()+"','"+p.getGender()+"',"+p.getAge()+",'"+p.getState()+"');\n";
+				stmt.executeUpdate(sql);
 			}
-		}.start();
+			stmt.close();  
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(null, e); 
+		}
 	}
 }

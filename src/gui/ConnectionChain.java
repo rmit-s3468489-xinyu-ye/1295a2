@@ -32,7 +32,7 @@ public class ConnectionChain extends javax.swing.JFrame
     
     private void setFrame()
     {
-        setResizable(false);
+        setResizable(true);
         setLocation(500, 300);
         setSize(600, 425);
     }

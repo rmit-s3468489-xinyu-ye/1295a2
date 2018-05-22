@@ -23,13 +23,14 @@ public class MiniNet extends javax.swing.JFrame
     /**
      * Creates new form MiniNet
      */
-    ListEveryone le;
-    AddPerson addPerson;
-    ConnectionChain cc;
-    DefineRelation define;
-    QueryRelationship qr;
-    QueryParentChild qpc;
+    private AddPerson addPerson;
+    private ConnectionChain cc;
+    private DefineRelation define;
+    private ListEveryone le;
+    private QueryParentChild qpc;
+    private QueryRelationship qr;
     public static Driver driver;
+    //Using constant to avoid hard coding
     public static final int AGE = 16;
     public DBConnect dbTest;
     
@@ -73,14 +74,14 @@ public class MiniNet extends javax.swing.JFrame
     private void initComponents() 
     {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        View = new javax.swing.JMenu();
+        jMenuBar = new javax.swing.JMenuBar();
+        view = new javax.swing.JMenu();
         jMILE = new javax.swing.JMenuItem();
         jMIAP = new javax.swing.JMenuItem();
         jMIQR = new javax.swing.JMenuItem();
         jMIFPC = new javax.swing.JMenuItem();
         jMICC = new javax.swing.JMenuItem();
-        Query = new javax.swing.JMenu();
+        edit = new javax.swing.JMenu();
         jMIR = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -99,7 +100,7 @@ public class MiniNet extends javax.swing.JFrame
             }
         });
 
-        View.setText("View");
+        view.setText("View");
 
         jMILE.setText("List Everyone");
         jMILE.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +108,7 @@ public class MiniNet extends javax.swing.JFrame
                 jMILEActionPerformed(evt);
             }
         });
-        View.add(jMILE);
+        view.add(jMILE);
 
         jMIAP.setText("Add a Person");
         jMIAP.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +116,7 @@ public class MiniNet extends javax.swing.JFrame
                 jMIAPActionPerformed(evt);
             }
         });
-        View.add(jMIAP);
+        view.add(jMIAP);
 
         jMIQR.setText("Query Relationship");
         jMIQR.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +124,7 @@ public class MiniNet extends javax.swing.JFrame
                 jMIQRActionPerformed(evt);
             }
         });
-        View.add(jMIQR);
+        view.add(jMIQR);
 
         jMIFPC.setText("Find Parent/Child");
         jMIFPC.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +132,7 @@ public class MiniNet extends javax.swing.JFrame
                 jMIFPCActionPerformed(evt);
             }
         });
-        View.add(jMIFPC);
+        view.add(jMIFPC);
 
         jMICC.setText("Connection Chain");
         jMICC.addActionListener(new java.awt.event.ActionListener() {
@@ -139,11 +140,11 @@ public class MiniNet extends javax.swing.JFrame
                 jMICCActionPerformed(evt);
             }
         });
-        View.add(jMICC);
+        view.add(jMICC);
 
-        jMenuBar1.add(View);
+        jMenuBar.add(view);
 
-        Query.setText("Edit");
+        edit.setText("Edit");
 
         jMIR.setText("Relationships");
         jMIR.addActionListener(new java.awt.event.ActionListener() {
@@ -151,11 +152,11 @@ public class MiniNet extends javax.swing.JFrame
                 jMIRActionPerformed(evt);
             }
         });
-        Query.add(jMIR);
+        edit.add(jMIR);
 
-        jMenuBar1.add(Query);
+        jMenuBar.add(edit);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,20 +192,11 @@ public class MiniNet extends javax.swing.JFrame
         if(JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Really exiting?", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION)
         {
-            try  
-            {
-	            	FileOperation.writePeopleToFile(driver.getTheMiniNet());
+	        	FileOperation.writePeopleToFile(driver.getTheMiniNet());
 	
-	            	FileOperation.writeRelationsToFile(driver.getRelations());
-            } 
-            catch (Exception e) 
-            {
-//                JOptionPane.showMessageDialog(null, e); 		
-	            	dbTest = new DBConnect();
-			    	dbTest.connect();
-			    	dbTest.writeToDB(driver.getTheMiniNet());
-            }
-            System.exit(0);          
+	        	FileOperation.writeRelationsToFile(driver.getRelations());
+	
+	        	System.exit(0);          
         }
         else
         {
@@ -258,13 +250,13 @@ public class MiniNet extends javax.swing.JFrame
     }
 
     // Variables declaration 
-    private javax.swing.JMenu Query;
-    private javax.swing.JMenu View;
+    private javax.swing.JMenu edit;
+    private javax.swing.JMenu view;
     private javax.swing.JMenuItem jMIAP;
     private javax.swing.JMenuItem jMICC;
     private javax.swing.JMenuItem jMIFPC;
     private javax.swing.JMenuItem jMILE;
     private javax.swing.JMenuItem jMIQR;
     private javax.swing.JMenuItem jMIR;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar;
 }

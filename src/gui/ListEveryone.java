@@ -137,8 +137,8 @@ public class ListEveryone extends javax.swing.JFrame
         try
         {
             String name = table.getValueAt(table.getSelectedRow(),0).toString();
-            Profile p = new Profile(name);
-            p.setVisible(true);
+            DisplayProfile dp = new DisplayProfile(name);
+            dp.setVisible(true);
         }
         catch (Exception ex)
         {

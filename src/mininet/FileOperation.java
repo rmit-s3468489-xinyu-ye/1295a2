@@ -124,40 +124,35 @@ public class FileOperation
      */
     public static void writePeopleToFile(List<Person> people) 
     { 
-    		new Thread() 
+   
+    		String message = "";
+
+    		PrintWriter outputStream = null;
+
+    		File f = new File("people.txt");
+
+    		try 
     		{
-    			public void run() 
-    			{
-    				String message = "";
+    			outputStream =
+    					new PrintWriter(new FileOutputStream("people.txt"));
+    		} 
+    		catch (FileNotFoundException e) 
+    		{
+    			JOptionPane.showMessageDialog(null, e);
+    		}
 
-    				PrintWriter outputStream = null;
+    		for(int i = 0; i <people.size(); i++)
+    		{
+    			String personInfo ="";
+    			Person p = people.get(i);
+    			personInfo = p.getName() + ","  + p.getPhotoPath() + "," +
+    					p.getStatus() + "," + p.getGender() + "," + p.getAge() +
+    					"," + p.getState();
 
-    				File f = new File("people.txt");
-
-    				try 
-    				{
-    					outputStream =
-    							new PrintWriter(new FileOutputStream("people.txt"));
-    				} 
-    				catch (FileNotFoundException e) 
-    				{
-    					JOptionPane.showMessageDialog(null, e);
-    				}
-
-        	        for(int i = 0; i <people.size(); i++)
-        	        {
-        	            String personInfo ="";
-        	            Person p = people.get(i);
-        	            personInfo = p.getName() + ","  + p.getPhotoPath() + "," +
-        	                    p.getStatus() + "," + p.getGender() + "," + p.getAge() +
-        	                    "," + p.getState();
-        	            
-        	            outputStream.println(personInfo);
-        	        }
-        	        //release resource
-        	        outputStream.close( );
-    			}
-    		}.start();
+    			outputStream.println(personInfo);
+    		}
+    		//release resource
+    		outputStream.close( );
     }
     
     /**
@@ -168,55 +163,31 @@ public class FileOperation
      */
     public static void writeRelationsToFile(List<Relation> relations) 
     {  
-	    	new Thread() 
+	    	String message = "";
+	
+	    	PrintWriter outputStream = null;
+	
+	    	File f = new File("relations.txt");
+	
+	    	try 
 	    	{
-	    		public void run() 
-	    		{
-	    			String message = "";
-
-	    			PrintWriter outputStream = null;
-
-	    			File f = new File("relations.txt");
-
-	    			try 
-	    			{
-	    				outputStream =
-	    						new PrintWriter(new FileOutputStream("relations.txt"));
-	    			} 
-	    			catch (FileNotFoundException e) 
-	    			{
-	    				JOptionPane.showMessageDialog(null, e);
-	    			}
-
-	    			for(int i=0; i < relations.size(); i++)
-	    			{
-	    				String relation = "";
-	    				Relation r = relations.get(i);
-	    				relation = r.getName1() + "," + r.getName2() + "," + r.getRelationType();
-
-	    				outputStream.println(relation);
-	    			}
-	    			//release the resource
-	    			outputStream.close( );
-	    		}
-	    	}.start();
+	    		outputStream =
+	    				new PrintWriter(new FileOutputStream("relations.txt"));
+	    	} 
+	    	catch (FileNotFoundException e) 
+	    	{
+	    		JOptionPane.showMessageDialog(null, e);
+	    	}
+	
+	    	for(int i=0; i < relations.size(); i++)
+	    	{
+	    		String relation = "";
+	    		Relation r = relations.get(i);
+	    		relation = r.getName1() + "," + r.getName2() + "," + r.getRelationType();
+	
+	    		outputStream.println(relation);
+	    	}
+	    	//release the resource
+	    	outputStream.close( );
     }
-    
-    /**
-     *
-     * @param name
-     * @param people
-     * @return a particular user existed in the ArrayList people
-     *
-     */
-//    private static Person getPersonByName(String name, List people)
-//    {
-//        for (Object o: people)
-//        {
-//            Person p = (Person)o;
-//            if(p.getName().equals(name))
-//                return p;
-//        }
-//        return null;
-//    }  
 }
