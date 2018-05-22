@@ -4,30 +4,27 @@
  * and open the template in the editor.
  */
 package test;
-
 import gui.MiniNet;
 import mininet.Driver;
 import mininet.NoAvailableException;
 import mininet.NotToBeCoupledException;
 import mininet.Person;
 import mininet.Relation;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author xinyuye
+ * @author Xinyu YE s3468489
  */
-public class DriverTest {
+public class DriverTest 
+{
     MiniNet miniNet = null;
     Driver driver = null;
     
@@ -53,7 +50,8 @@ public class DriverTest {
     }
     
     @After
-    public void tearDown() {
+    public void tearDown() 
+    {
     }
 
     /**
@@ -101,7 +99,7 @@ public class DriverTest {
     public void testGetTheMiniNet() 
     {
         System.out.println("getTheMiniNet");
-        List list = new ArrayList();
+        List<Person> list = new ArrayList<Person>();
         driver.setTheMiniNet(list);       
         List<Person> expResult = list;      
         List<Person> result = driver.getTheMiniNet();
@@ -128,7 +126,7 @@ public class DriverTest {
         String name1 = "James";
         String name2 = "Angelo";    
         driver.addAdult(name1, "j.jpg", "working", 'M', 27, "VIC");
-        driver.addAdult(name2, "j.jpg", "working", 'M', 27, "VIC");     
+        driver.addAdult(name2, "a.jpg", "working", 'M', 27, "VIC");     
         String expResult = "Successfully make them friends !";
         String result = driver.makeFriends(name1, name2);
         assertEquals(expResult, result);

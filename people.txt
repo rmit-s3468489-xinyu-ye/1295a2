@@ -15,6 +15,7 @@ Hannah White,images/IMG_3181.jpg,student at PLC,F,14,VIC
 Ivan Zhang,images/IMG_3917.PNG,photographing,M,26,VIC
 K Turner,images/IMG_0593.jpg,,M,4,VIC
 Kevin YE,images/IMG_3997.JPG,coding,M,27,VIC
+Lee,,,M,2,VIC
 Luke,,,M,4,VIC
 Mark Turner,images/IMG_0052.JPG,,M,4,VIC
 Orkhan Azizlee,images/0464.png,I'm feeling like a boss,M,25,VIC

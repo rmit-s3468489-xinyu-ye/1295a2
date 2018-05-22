@@ -28,7 +28,7 @@ public class FileOperation
      * @return an arrayList stores objects of the type Person
      * @throws Exception
      */
-    public static List<Person> readPeople() throws Exception
+    public static List<Person> readPeopleFromFile() throws Exception
     {
 	        String message = "";     
 	        String line;
@@ -77,7 +77,7 @@ public class FileOperation
      * @return an arrayList stores objects of the type Relation
      * @throws Exception
      */
-    public static List<Relation> readRelations() throws Exception
+    public static List<Relation> readRelationsFromFile() throws Exception
     {   
         String message = "";
         

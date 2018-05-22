@@ -1,8 +1,5 @@
 package mininet;
 import gui.MiniNet;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 /**
@@ -21,7 +18,7 @@ public class Driver
     		{//When launch the program, the data of people
     		//stored in the text file should overwrite the
     		//corresponding data in the database
-    			theMiniNet = FileOperation.readPeople();		
+    			theMiniNet = FileOperation.readPeopleFromFile();		
     		}
     		catch(Exception e)
     		{//If people.txt does not exist, read the data
@@ -32,7 +29,7 @@ public class Driver
     		}
     		
     		//Read the data of relations from releations.txt
-    		relations = FileOperation.readRelations();
+    		relations = FileOperation.readRelationsFromFile();
     }
     
     public List<Relation> getRelations()
@@ -64,6 +61,10 @@ public class Driver
             try
             {
                 message = makeFriends(r.getName1(), r.getName2());
+            }
+            catch(TooYoungException tye) 
+            {
+            		message = tye.getMessage();
             }
             catch (NotToBeFriendsException ntbfe)
             {
@@ -150,17 +151,21 @@ public class Driver
      * @throws NotToBeFriendsException
      */
     public String makeFriends(String name1, String name2) 
-            throws NotToBeFriendsException
+            throws NotToBeFriendsException, TooYoungException
     {
         String message = "";
         
+        if(getPersonByName(name1).getAge() <=2
+            			|| getPersonByName(name2).getAge() <=2) 
+        {//If trying to make friend with a yound child
+        		throw new TooYoungException();
+        }
         //If trying to make an adult and a dependent friend
-        if(getPersonByName(name1).getClass()!=
+        else if(getPersonByName(name1).getClass()!=
            getPersonByName(name2).getClass())
         {
             throw new NotToBeFriendsException();
         }
-        
         else
         {	//If trying to make two children with an age gap
         		//larger than 3 to be friends
@@ -178,7 +183,8 @@ public class Driver
                     message = "They are already friends !";
                 }
                 else
-                {
+                {//If the selected two persons are eligible for being friends
+                	//make them friends
                     Relation r = new Relation();
                     
                     r.setName1(compareName(name1,name2,true));

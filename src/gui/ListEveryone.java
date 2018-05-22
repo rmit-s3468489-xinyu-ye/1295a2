@@ -1,7 +1,5 @@
 package gui;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +33,7 @@ public class ListEveryone extends javax.swing.JFrame
     private void initComponents() 
     {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jBProfile = new javax.swing.JButton();
         jBDelete = new javax.swing.JButton();
@@ -63,7 +61,7 @@ public class ListEveryone extends javax.swing.JFrame
             }
         ));
         table.setName("table"); 
-        jScrollPane1.setViewportView(table);
+        jScrollPane.setViewportView(table);
 
         jBProfile.setText("View Profile");
         
@@ -92,7 +90,7 @@ public class ListEveryone extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -103,7 +101,7 @@ public class ListEveryone extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,7 +257,7 @@ public class ListEveryone extends javax.swing.JFrame
      * @param name
      * @return an arrayList storing String objects
      */
-    public List<String> getRelationType(String name)
+    private List<String> getRelationType(String name)
     {
         List<String> relationType = new ArrayList<String>();
         
@@ -303,6 +301,6 @@ public class ListEveryone extends javax.swing.JFrame
     // Variables declaration
     private javax.swing.JButton jBDelete;
     private javax.swing.JButton jBProfile;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JTable table;
 }

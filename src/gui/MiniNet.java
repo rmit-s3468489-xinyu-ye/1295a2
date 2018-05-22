@@ -1,14 +1,8 @@
 package gui;
 
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
-
 import mininet.DBConnect;
 import mininet.Driver;
 import mininet.FileOperation;
@@ -32,7 +26,6 @@ public class MiniNet extends javax.swing.JFrame
     public static Driver driver;
     //Using constant to avoid hard coding
     public static final int AGE = 16;
-    public DBConnect dbTest;
     
     public MiniNet() 
     {

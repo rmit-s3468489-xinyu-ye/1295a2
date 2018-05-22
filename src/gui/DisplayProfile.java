@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gui;
-
 import java.awt.Image;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -90,7 +88,7 @@ public class DisplayProfile extends javax.swing.JFrame
      * @param gender
      * @return the name of a child's parent
      */
-    public String getParent(String name,char gender)
+    private String getParent(String name,char gender)
     {
         List <Relation> data = MiniNet.driver.getRelations();
         
@@ -303,7 +301,6 @@ public class DisplayProfile extends javax.swing.JFrame
        up.setVisible(true);
     }//GEN-LAST:event_jBUpdateActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBUpdate;
     private javax.swing.JLabel jLABAge;
@@ -322,5 +319,4 @@ public class DisplayProfile extends javax.swing.JFrame
     private javax.swing.JLabel jLabState;
     private javax.swing.JLabel jLabStatus;
     // End of variables declaration//GEN-END:variables
-
 }

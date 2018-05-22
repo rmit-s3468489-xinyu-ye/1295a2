@@ -1,15 +1,9 @@
 package gui;
-
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
-
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-import com.sun.webkit.ThemeClient;
-
 import mininet.PathNode;
 import mininet.Person;
 import mininet.Relation;
@@ -39,10 +33,10 @@ public class ConnectionChain extends javax.swing.JFrame
 
     private void initComponents() 
     {
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabName1 = new javax.swing.JLabel();
+        jLabName2 = new javax.swing.JLabel();
         jCBName1 = new javax.swing.JComboBox<>();
         jCBName2 = new javax.swing.JComboBox<>();
         jBQuery = new javax.swing.JButton();
@@ -70,11 +64,11 @@ public class ConnectionChain extends javax.swing.JFrame
             }
         ));
         
-        jScrollPane1.setViewportView(table);
+        jScrollPane.setViewportView(table);
 
-        jLabel1.setText("Please select a person: ");
+        jLabName1.setText("Please select a person: ");
 
-        jLabel2.setText("Please select another person: ");
+        jLabName2.setText("Please select another person: ");
 
         jBQuery.setText("Query");
         
@@ -93,11 +87,11 @@ public class ConnectionChain extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabName1)
+                            .addComponent(jLabName2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCBName1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,14 +106,14 @@ public class ConnectionChain extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabName1)
                     .addComponent(jCBName1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabName2)
                     .addComponent(jCBName2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBQuery, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -136,7 +130,7 @@ public class ConnectionChain extends javax.swing.JFrame
      */
     private void jBQueryActionPerformed(java.awt.event.ActionEvent evt) 
     {	//Store all the path nodes in a Hashtable
-        Hashtable nodes = new Hashtable();
+        Hashtable<String,PathNode> nodes = new Hashtable<String,PathNode>();
         
         //An arrayList that stores all the relation paths
         List<RelationPath> data = new ArrayList<RelationPath>();
@@ -213,7 +207,7 @@ public class ConnectionChain extends javax.swing.JFrame
      * Create nodes for every person in the MiniNet
      * @param nodes
      */
-    private void creatNodes(Hashtable nodes)
+    private void creatNodes(Hashtable<String,PathNode> nodes)
     {
         List<Relation> relations = MiniNet.driver.getRelations();
         
@@ -222,7 +216,7 @@ public class ConnectionChain extends javax.swing.JFrame
         //For every single person, set himself as a path node
         for(Person person:persons)
         {
-            PathNode pn = new PathNode(null,person.getName(),"");
+            PathNode pn = new PathNode(person.getName(),"", null);
             nodes.put(person.getName(), pn);
         }
         
@@ -281,7 +275,7 @@ public class ConnectionChain extends javax.swing.JFrame
      * @param nodes
      * @param data
      */
-    private void findPath(PathNode p, String target, Hashtable nodes, List<RelationPath> data)
+    private void findPath(PathNode p, String target, Hashtable<String,PathNode> nodes, List<RelationPath> data)
     {
        
         if(p.getParent() == null)
@@ -394,8 +388,8 @@ public class ConnectionChain extends javax.swing.JFrame
     private javax.swing.JButton jBQuery;
     private javax.swing.JComboBox<String> jCBName1;
     private javax.swing.JComboBox<String> jCBName2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabName1;
+    private javax.swing.JLabel jLabName2;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JTable table;
 }

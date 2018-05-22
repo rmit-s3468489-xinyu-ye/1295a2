@@ -1,1 +1,5 @@
+Adam,Alex Smith,Classmate
+Alex Smith,Alice,Colleague
 Alice,Bob,Couple
+Alice,Lee,Parent
+Bob,Lee,Parent

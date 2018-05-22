@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package gui;
-
-import java.util.List;
 import mininet.Adult;
 import mininet.Person;
 import java.awt.Image;
@@ -62,9 +60,9 @@ public class UpdateProfile extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jMenu1 = new javax.swing.JMenu();
+        jScrollPane = new javax.swing.JScrollPane();
+        jList = new javax.swing.JList<>();
+        jMenu = new javax.swing.JMenu();
         jLabName = new javax.swing.JLabel();
         jLabStatus = new javax.swing.JLabel();
         jLabGender = new javax.swing.JLabel();
@@ -84,14 +82,14 @@ public class UpdateProfile extends javax.swing.JFrame
         jLABFN = new javax.swing.JLabel();
         jLABMN = new javax.swing.JLabel();
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane.setViewportView(jList);
 
-        jMenu1.setText("jMenu1");
+        jMenu.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -283,9 +281,9 @@ public class UpdateProfile extends javax.swing.JFrame
     private javax.swing.JLabel jLabPhoto;
     private javax.swing.JLabel jLabState;
     private javax.swing.JLabel jLabStatus;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> jList;
+    private javax.swing.JMenu jMenu;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JTextField jTFPhoto;
     private javax.swing.JTextField jTFStatus;
     // End of variables declaration//GEN-END:variables

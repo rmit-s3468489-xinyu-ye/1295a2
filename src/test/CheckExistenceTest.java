@@ -2,10 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 import java.util.List;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -24,13 +22,17 @@ public class CheckExistenceTest
 	public static void setUp() 
 	{
             
-		try {
+		try 
+		{
 			driver=new Driver();
 			people = driver.getTheMiniNet();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (Exception e) 
+		{
+			
 			e.printStackTrace();
 		}
+		
 		Jack = new Adult("Jack", "Jack.jpg", "working for Bosch", 'M', 30, "VIC");
 		Rose = new Adult("Rose","Rose.jpg","working for VanGuard",'F',32,"VIC");
 	}

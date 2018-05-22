@@ -2,8 +2,6 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -29,7 +27,7 @@ public class AddPerson extends javax.swing.JFrame
     
     private void setFrame()
     {
-        setResizable(false);
+        setResizable(true);
         setLocation(500, 300);
         setSize(470, 385);
     }

@@ -87,7 +87,6 @@ public abstract class Person
      */
     public static Comparator<Person> nameComparator = new Comparator<Person>() 
     {
-
         @Override
         public int compare(Person p1, Person p2) 
         {

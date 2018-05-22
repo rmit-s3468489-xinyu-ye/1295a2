@@ -1,11 +1,9 @@
 package gui;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mininet.*;
-
 /**
  *
  * @author Xinyu YE s3468489
@@ -33,7 +31,7 @@ public class QueryParentChild extends javax.swing.JFrame
     private void initComponents() 
     {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jCBName = new javax.swing.JComboBox<>();
         jLName = new javax.swing.JLabel();
@@ -63,7 +61,7 @@ public class QueryParentChild extends javax.swing.JFrame
             }
         ));
         
-        jScrollPane1.setViewportView(table);
+        jScrollPane.setViewportView(table);
 
         jLName.setText("Please select a person: ");
 
@@ -97,7 +95,7 @@ public class QueryParentChild extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
@@ -112,7 +110,7 @@ public class QueryParentChild extends javax.swing.JFrame
                     .addComponent(jCBName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBParents)
@@ -320,6 +318,6 @@ public class QueryParentChild extends javax.swing.JFrame
     private javax.swing.JButton jBParents;
     private javax.swing.JComboBox<String> jCBName;
     private javax.swing.JLabel jLName;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JTable table;
 }

@@ -1,5 +1,4 @@
 package mininet;
-import java.util.*;
 /**
 *
 * @author Xinyu YE s3468489

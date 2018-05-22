@@ -7,7 +7,7 @@ public class TooYoungException extends Exception
 {
     public TooYoungException()
       {
-          super("The selected kid is too yound to make friends");
+          super("The selected kid is too yound to make friends !");
       }
     
 }

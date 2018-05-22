@@ -1,8 +1,5 @@
 package gui;
-
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mininet.*;
@@ -18,7 +15,6 @@ public class DefineRelation extends javax.swing.JFrame
     public DefineRelation()
     {
         initComponents();
-  
         refTable();
         refCombos();
         setFrame();
@@ -34,7 +30,7 @@ public class DefineRelation extends javax.swing.JFrame
     private void initComponents() 
     {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jCBName1 = new javax.swing.JComboBox<>();
         jCBName2 = new javax.swing.JComboBox<>();
@@ -65,7 +61,7 @@ public class DefineRelation extends javax.swing.JFrame
             }
         ));
         
-        jScrollPane1.setViewportView(table);
+        jScrollPane.setViewportView(table);
 
         jCBRelation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Classmate", "Colleague", "Couple", "Friend", "Parent", " ", " " }));
 
@@ -96,7 +92,7 @@ public class DefineRelation extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCBName1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
@@ -112,7 +108,7 @@ public class DefineRelation extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -248,7 +244,7 @@ public class DefineRelation extends javax.swing.JFrame
      * @return a specific string that indicates whether the intended operation
      * 			is successful or not
      */
-    public static String disassociateParent(Relation relation)
+    private String disassociateParent(Relation relation)
     {
         String message = "";
         
@@ -296,7 +292,7 @@ public class DefineRelation extends javax.swing.JFrame
      * 			is successful or not
      * @throws NoParentException
      */
-    public static String deCouple(Relation relation) throws NoParentException
+    private String deCouple(Relation relation) throws NoParentException
     {
         String message = "";
         
@@ -339,7 +335,7 @@ public class DefineRelation extends javax.swing.JFrame
      * @return a specific string that indicates whether the intended operation
      * 			is successful or not
      */
-    public static String disassociate(Relation relation)
+    private String disassociate(Relation relation)
     {
         String message = "";
         
@@ -414,7 +410,7 @@ public class DefineRelation extends javax.swing.JFrame
     private javax.swing.JComboBox<String> jCBName1;
     private javax.swing.JComboBox<String> jCBName2;
     private javax.swing.JComboBox<String> jCBRelation;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JTable table;
    
 }

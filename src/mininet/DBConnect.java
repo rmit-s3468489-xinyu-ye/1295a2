@@ -36,7 +36,7 @@ public class DBConnect
 	 * @return
 	 * @throws SQLException
 	 */
-	public List readPeopleFromDB() throws SQLException
+	public List<Person> readPeopleFromDB() throws SQLException
 	{
 		List<Person> result = new ArrayList<Person>();
 		

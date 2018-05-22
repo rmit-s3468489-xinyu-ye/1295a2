@@ -1,25 +1,23 @@
 package mininet;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.List;
 /**
  *
  * @author Xinyu YE s346849
  */
 public class PathNode 
 {
-    private PathNode parent;
-    private Hashtable children;
     private String name;
     private String relation;
+    private PathNode parent;
+    private Hashtable<String,PathNode> children;
     
-    public PathNode(PathNode parent,String name,String relation)
+    public PathNode(String name,String relation,PathNode parent)
     {
-        this.parent = parent;
         this.name = name;
         this.relation = relation;
-        this.children = new Hashtable();
+        this.parent = parent;
+        this.children = new Hashtable<String,PathNode>();
     }
     
     public PathNode getParent() 
@@ -42,12 +40,12 @@ public class PathNode
         this.name = name;
     }
 
-    public Hashtable getChildren() 
+    public Hashtable<String,PathNode> getChildren() 
     {
         return children;
     }
 
-    public void setChildren(Hashtable children) 
+    public void setChildren(Hashtable<String,PathNode> children) 
     {
         this.children = children;
     }
